@@ -14,20 +14,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # See https://github.com/nektos/act/issues/107#issuecomment-2063855006
+      - name: Install Act dependencies
+        if: ${{ env.ACT }}
+        run: |
+          apt update && apt install sudo -y
+
+      - name: Install dependencies
+        run: |
+          sudo apt update && sudo apt install curl -y
+
       - name: Install Lix
-        uses: https://github.com/DeterminateSystems/nix-installer-action@main
-        with:
-          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
-          logger: pretty
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf -L https://install.lix.systems/lix | sh -s -- install linux \
+            --extra-conf "sandbox = false" \
+            --init none \
+            --no-confirm
 
       - name: Setup cachix
-        uses: https://github.com/cachix/cachix-action@v15
-        with:
-          name: haipkgs
-          signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
-          authToken: "${{ secrets.CACHIX_TOKEN }}"
+        run: |
+          nix profile install github:cachix/cachix/latest --accept-flake-config
 
-      - name: Build from the matrix
+      - name: Build packages
+        env:
+          CACHIX_SIGNING_KEY: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          CACHIX_AUTH_TOKEN: "${{ secrets.CACHIX_AUTH_TOKEN }}"
         run: |
           nix run \
             github:Mic92/nix-fast-build -- \
@@ -35,4 +46,5 @@ jobs:
             --skip-cached \
             --systems x86_64-linux \
             --option accept-flake-config true \
-            --flake .#hydraJobs.x86_64-linux
+            --flake .#hydraJobs.x86_64-linux \
+            --cachix-cache haipkgs
