@@ -5,7 +5,7 @@
   cmake,
   sfml,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "jkps";
   version = "0.3";
 
@@ -26,5 +26,6 @@ stdenv.mkDerivation rec {
     description = "A keys-per-second meter for rhythm games, useful for streaming and making videos";
     homepage = "https://github.com/JekiTheMonkey/JKPS";
     license = lib.licenses.mit;
+    platforms = lib.platforms.linux;
   };
 }
