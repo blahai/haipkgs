@@ -2,32 +2,33 @@ on:
   push: main
 
 jobs:
-  name: build
-  runs-on: docker
+  build:
+    name: build
+    runs-on: docker
 
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+   steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Install Lix
-      uses: DeterminateSystems/nix-installer-action@main
-      with:
-        source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
-        logger: pretty
+      - name: Install Lix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
+          logger: pretty
 
-    - name: Setup cachix
-      uses: cachix/cachix-action@v15
-      with:
-        name: haipkgs
-        signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
-        authToken: "${{ secrets.CACHIX_TOKEN }}"
+      - name: Setup cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: haipkgs
+          signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          authToken: "${{ secrets.CACHIX_TOKEN }}"
 
-    - name: Build from the matrix
-      run: |
-        nix run \
-          github:Mic92/nix-fast-build -- \
-          --no-nom \
-          --skip-cached \
-          --systems x86_64-linux \
-          --option accept-flake-config true \
-          --flake .#hydraJobs.x86_64-linux
+      - name: Build from the matrix
+        run: |
+          nix run \
+            github:Mic92/nix-fast-build -- \
+            --no-nom \
+            --skip-cached \
+            --systems x86_64-linux \
+            --option accept-flake-config true \
+            --flake .#hydraJobs.x86_64-linux
