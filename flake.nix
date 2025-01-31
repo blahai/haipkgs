@@ -74,15 +74,14 @@
       file = ./modules/hjem;
     };
 
-    overlays = loadOverlays;
+    # overlays = loadOverlays;
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);
   };
 
   nixConfig = {
-    substituters = ["https://blahai.cachix.org" "https://nix-community.cachix.org/"];
+    substituters = ["https://nix-community.cachix.org/"];
     trusted-public-keys = [
-      "blahai.cachix.org-1:7Pg+JDWpcIogeN3HesRnOb4dl6FSwl/ZHC+QUmb65So="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
