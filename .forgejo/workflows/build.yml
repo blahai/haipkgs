@@ -3,7 +3,7 @@ on:
 
 jobs:
   name: build
-  runs-on: ubuntu-latest
+  runs-on: docker
 
   steps:
     - name: Checkout
