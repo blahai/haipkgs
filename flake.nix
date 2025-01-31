@@ -15,9 +15,10 @@
     ...
   }: let
     inherit (nixpkgs) lib;
+    inherit (lib.attrsets) genAttrs;
 
     forAllSystems = fn:
-      lib.genAttrs lib.systems.flakeExposed (
+      genAttrs ["x86_64-linux" "aarch64-linux"] (
         system:
           fn (
             import nixpkgs {
