@@ -1,17 +1,11 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
-    hjem,
     ...
   }: let
     inherit (nixpkgs) lib;
@@ -69,10 +63,6 @@
     nixosModules.default = mkModule {
       class = "nixos";
       file = ./modules/nixos;
-    };
-    hjemModules.default = mkModule {
-      class = "hjem";
-      file = ./modules/hjem;
     };
 
     # overlays = loadOverlays;
