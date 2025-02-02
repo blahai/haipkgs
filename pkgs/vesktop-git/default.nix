@@ -15,14 +15,14 @@
   nix-update-script,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "vesktop";
-  version = "git";
+  pname = "vesktop-git";
+  version = "1.5.4.r10.gc9be618";
 
   src = fetchFromGitHub {
     owner = "Vencord";
     repo = "Vesktop";
-    rev = "00fb658355fd0c87d19e379bc432a78e8c698861";
-    hash = "sha256-UzBgBKv4u0hCSuUH//97XbdykFi4iWGD8siU0/nngPs=";
+    rev = "c9be6181644a329ce6556c49186e56e2b7d5e8e2";
+    hash = "sha256-amHB9OZUHEqtYBVqr0Fqaj9MnVdNvCexEiOILAL+voo=";
   };
 
   pnpmDeps = pnpm_9.fetchDeps {

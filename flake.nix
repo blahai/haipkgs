@@ -67,6 +67,22 @@
 
     # overlays = loadOverlays;
 
+    devShells = forAllSystems (pkgs: {
+      default = pkgs.mkShell {
+        name = "devshell";
+
+        buildInputs = with pkgs; [
+          git
+          nix-prefetch-git
+          jq
+        ];
+
+        shellHook = ''
+          echo "Entering devshell!"
+        '';
+      };
+    });
+
     formatter = forAllSystems (pkgs: pkgs.alejandra);
   };
 
