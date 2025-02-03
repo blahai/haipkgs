@@ -13,6 +13,10 @@ jobs:
     runs-on: lix-latest
 
     steps:
+      - name: Setup node
+        run: |
+          nix shell nixpkgs#nodejs
+
       - name: Checkout
         uses: actions/checkout@v4
 
