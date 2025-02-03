@@ -9,14 +9,44 @@ here's a list of what I have done/will do for most of the packages
 - remove any darwin code (I don't use or plan to use a mac)
 - assume wayland (for example electron wayland flags hard-coded)
 
-and if you do want to use these with the overlay (recommended) add this
-to your nixos config
+
+### oki but how 2 use?!?
+
+just add this to your flake.nix inputs (nix channel users cope)
+```nix
+  haipkgs = {
+    url = "git+https://git.blahai.gay/blahai/haipkgs.git";
+    inputs = {
+      nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+```
+
+then add this to your config somewhere
 ```nix
 nixpkgs.overlays = [
   inputs.haipkgs.overlays.default
 ];
 ```
 
+and congrats you can now use haipkgs 🎉
+
+#### Cache??
+
+yop
+
+```nix
+nix.settings = {
+  substituters = [
+    "https://haipkgs.cachix.org"
+  ];
+  trusted-public-keys = [
+    "haipkgs.cachix.org-1:AcjMqIafTEQ7dw99RpeTJU2ywNUn1h8yIxz2+zjpK/A="
+  ];
+};
+```
+### credits
 
 as always thank you to these wonderful people for making this possible
 - isabelroses for beapkgs
