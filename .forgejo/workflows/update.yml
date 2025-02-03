@@ -13,14 +13,6 @@ jobs:
       contents: write
 
     steps:
-      - name: Enable nix features
-        run: |
-          echo 'experimental-features = nix-command flakes' | tee -a /etc/nix/nix.conf
-
-      - name: Setup node
-        run: |
-          nix shell nixpkgs#nodejs
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -33,7 +25,7 @@ jobs:
         run: nix flake update --commit-lock-file
 
       - name: Update Packages
-        run: nix run .#update --option accept-flake-config true
+        run: nix run .#update
 
       - name: Push changes
         run: git push origin main
