@@ -16,11 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: |
+          apt update && apt install curl -y
+
       - name: Install Lix
-        uses: https://github.com/DeterminateSystems/nix-installer-action@main
-        with:
-          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
-          logger: pretty
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf -L https://install.lix.systems/lix | sh -s -- install linux \
+            --extra-conf "sandbox = false" \
+            --init none \
+            --no-confirm
 
       - name: Setup Git
         run: |
