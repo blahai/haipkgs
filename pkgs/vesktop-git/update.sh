@@ -20,9 +20,9 @@ get_pkgver() {
 
 get_pkgver
 
-sed -i "s|rev = \".*\";|rev = \"$REV\";|" default.nix
-sed -i "0,/hash = \".*\";/s|hash = \".*\";|hash = \"$HASH\";|" default.nix
-sed -i "0,/version = \".*\";/s|version = \".*\";|version = \"$PKGVER\";|" default.nix
+sed -i "s|vesktopRev = \".*\";|vesktopRev = \"$REV\";|" default.nix
+sed -i "s|vesktopHash = \".*\";|vesktopHash = \"$HASH\";|" default.nix
+sed -i "s|version = \".*\";|version = \"$PKGVER\";|" default.nix
 
 echo "Updated to latest commit: $REV with sha256: $HASH"
 echo "$PKGVER"

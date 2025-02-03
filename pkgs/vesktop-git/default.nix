@@ -16,7 +16,7 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "vesktop-git";
-  version = "1.5.4.r10.gc9be618";
+  version = "1.5.4-unstable-2025-02-02";
 
   src = fetchFromGitHub {
     owner = "Vencord";
@@ -119,16 +119,18 @@ stdenv.mkDerivation (finalAttrs: {
 
   passthru = {
     inherit (finalAttrs) pnpmDeps;
-    updateScript = nix-update-script {};
+    updateScript = nix-update-script {
+      extraArgs = [
+        "--version"
+        "branch=HEAD"
+      ];
+    };
   };
 
   meta = {
     description = "Alternate client for Discord with Vencord built-in. Git version";
     homepage = "https://github.com/Vencord/Vesktop";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [
-      blahai
-    ];
     mainProgram = "vesktop";
     platforms = [
       "x86_64-linux"

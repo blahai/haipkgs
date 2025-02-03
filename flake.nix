@@ -37,13 +37,43 @@
       packageNames = builtins.attrNames (builtins.readDir ./pkgs);
     in
       nixpkgs.lib.genAttrs packageNames (name: pkgs.callPackage (./pkgs + "/${name}") {});
-
-    loadOverlays = let
-      overlayNames = builtins.attrNames (builtins.readDir ./overlays);
-    in
-      nixpkgs.lib.genAttrs overlayNames (name: import (./overlays + "/${name}"));
   in {
     packages = forAllSystems loadPackages;
+
+    overlays.default = _: prev: self.packages.${prev.stdenv.hostPlatform.system} or {};
+
+    apps = forAllSystems (pkgs: {
+      update = {
+        type = "app";
+        program = lib.getExe (
+          pkgs.writeShellApplication {
+            name = "update";
+
+            text = lib.concatStringsSep "\n" (
+              lib.mapAttrsToList (
+                name: pkg:
+                  if pkg ? updateScript && (lib.isList pkg.updateScript) && (lib.length pkg.updateScript) > 0
+                  then
+                    lib.escapeShellArgs (
+                      if (lib.match "nix-update|.*/nix-update" (lib.head pkg.updateScript) != null)
+                      then
+                        [(lib.getExe pkgs.nix-update)]
+                        ++ (lib.tail pkg.updateScript)
+                        ++ [
+                          "--flake"
+                          "packages.${pkgs.stdenv.hostPlatform.system}.${name}"
+                          "--version=branch"
+                        ]
+                      else pkg.updateScript
+                    )
+                  else builtins.toString pkg.updateScript or ""
+              )
+              self.packages.${pkgs.stdenv.hostPlatform.system}
+            );
+          }
+        );
+      };
+    });
 
     hydraJobs = forAllSystems (
       pkgs:
@@ -65,16 +95,12 @@
       file = ./modules/nixos;
     };
 
-    # overlays = loadOverlays;
-
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
         name = "devshell";
 
         buildInputs = with pkgs; [
-          git
-          nix-prefetch-git
-          jq
+          nix-update
         ];
 
         shellHook = ''
@@ -87,9 +113,15 @@
   };
 
   nixConfig = {
-    substituters = ["https://nix-community.cachix.org/"];
+    substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org/"
+      "https://haipkgs.cachix.org/"
+    ];
     trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "haipkgs.cachix.org-1:AcjMqIafTEQ7dw99RpeTJU2ywNUn1h8yIxz2+zjpK/A="
     ];
   };
 }
