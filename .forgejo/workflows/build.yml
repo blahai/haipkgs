@@ -13,6 +13,10 @@ jobs:
     runs-on: lix-latest
 
     steps:
+      - name: Enable nix features
+        run: |
+          echo 'experimental-features = nix-command flakes' | tee -a /etc/nix/nix.conf
+
       - name: Setup node
         run: |
           nix shell nixpkgs#nodejs
