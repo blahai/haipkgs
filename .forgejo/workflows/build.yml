@@ -10,28 +10,11 @@ on:
 jobs:
   build:
     name: build
-    runs-on: ubuntu-latest
+    runs-on: lix-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # See https://github.com/nektos/act/issues/107#issuecomment-2063855006
-      - name: Install Act dependencies
-        if: ${{ env.ACT }}
-        run: |
-          apt update && apt install sudo -y
-
-      - name: Install dependencies
-        run: |
-          sudo apt update && sudo apt install curl -y
-
-      - name: Install Lix
-        run: |
-          curl --proto '=https' --tlsv1.2 -sSf -L https://install.lix.systems/lix | sh -s -- install linux \
-            --extra-conf "sandbox = false" \
-            --init none \
-            --no-confirm
 
       - name: Setup cachix
         run: |

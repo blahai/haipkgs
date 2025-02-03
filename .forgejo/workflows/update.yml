@@ -7,7 +7,7 @@ on:
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: lix-latest
 
     permissions:
       contents: write
@@ -15,17 +15,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          apt update && apt install curl -y
-
-      - name: Install Lix
-        run: |
-          curl --proto '=https' --tlsv1.2 -sSf -L https://install.lix.systems/lix | sh -s -- install linux \
-            --extra-conf "sandbox = false" \
-            --init none \
-            --no-confirm
 
       - name: Setup Git
         run: |
