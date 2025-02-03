@@ -62,7 +62,7 @@
                         ++ [
                           "--flake"
                           "packages.${pkgs.stdenv.hostPlatform.system}.${name}"
-                          "--version=branch"
+                          "--commit"
                         ]
                       else pkg.updateScript
                     )
