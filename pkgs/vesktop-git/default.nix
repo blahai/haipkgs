@@ -16,13 +16,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "vesktop-git";
-  version = "1.5.4-unstable-2025-02-05";
+  version = "1.5.4-unstable-2025-02-06";
 
   src = fetchFromGitHub {
     owner = "Vencord";
     repo = "Vesktop";
-    rev = "6ba562c663e5d84f5a4b0f10bbe3adaf846ad2f7";
-    hash = "sha256-YDo2OAicbMdP9/WCcFsexRfBNnb2DO3fB6jKHqyLxis=";
+    rev = "9b0503f49dace3c1ec1861f41a19fd9a35f8e4a4";
+    hash = "sha256-ik7CrCTwZZwQRWk4NVElhx91eRai/e1Z9QTrayXXOWY=";
   };
 
   pnpmDeps = pnpm_9.fetchDeps {
