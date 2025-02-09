@@ -108,6 +108,6 @@ rustPlatform.buildRustPackage.override {stdenv = stdenvAdapters.useMoldLinker ll
     description = "GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust. Git version";
     homepage = "https://wezfurlong.org/wezterm";
     license = lib.licenses.mit;
-    platforms = lib.platforms.unix;
+    platforms = lib.platforms.linux;
   };
 }
