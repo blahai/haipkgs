@@ -26,13 +26,13 @@ rustPlatform.buildRustPackage.override {stdenv = stdenvAdapters.useMoldLinker ll
   src = fetchFromGitHub {
     owner = "wez";
     repo = "wezterm";
-    rev = "1bd7e9ec398de9c92d80fe5d1a44ef98d4b1af24";
-    hash = "sha256-c74YLv775mZgZ8y2cJ+Xuue91s4491TWKkGl1zwztYU=";
+    rev = "23d643bab4baccdd934130429abb101c25725691";
+    hash = "sha256-dDbx6ttK3voC5eDVXDY40WUSqn8EEpPazMOEJ9fKTKI=";
     fetchSubmodules = true;
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-ZiqQyBvCDAGA1jjjFgUjRy9DIIhc0KJkTUYPIz3PVPc=";
+  cargoHash = "sha256-XdH9ULFlGpS0imAxw6S2Lf5jwQKkH3RrsJz8NDrnfxs=";
 
   doCheck = false;
 
