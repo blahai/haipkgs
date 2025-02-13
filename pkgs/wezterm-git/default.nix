@@ -21,13 +21,13 @@
 }:
 rustPlatform.buildRustPackage.override {stdenv = stdenvAdapters.useMoldLinker llvm.stdenv;} rec {
   pname = "wezterm-git";
-  version = "20240203-110809-5046fc22-unstable-2025-02-12";
+  version = "20240203-110809-5046fc22-unstable-2025-02-13";
 
   src = fetchFromGitHub {
     owner = "wez";
     repo = "wezterm";
-    rev = "11505b7083cc098203f899b023f31fe41abff0bd";
-    hash = "sha256-oRi2pvGWR8UVUGc4+Nmgdr5PNJSC3uwZiIHcfbge53Q=";
+    rev = "1e527797424b3aea0d326792033ef9c4f283a6e8";
+    hash = "sha256-Whv9m/Vpu83ZwaW6vK2udtQC0CGQMJvwHjyHcRJhBZs=";
     fetchSubmodules = true;
   };
 
