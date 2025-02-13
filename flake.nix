@@ -1,22 +1,28 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    rust-overlay,
     ...
   }: let
     inherit (nixpkgs) lib;
     inherit (lib.attrsets) genAttrs;
+    overlays = [(import rust-overlay)];
 
     forAllSystems = fn:
       genAttrs ["x86_64-linux" "aarch64-linux"] (
         system:
           fn (
             import nixpkgs {
-              inherit system;
+              inherit system overlays;
               config.allowUnfree = true;
             }
           )
