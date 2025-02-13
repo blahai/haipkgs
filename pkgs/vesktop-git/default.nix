@@ -16,13 +16,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "vesktop-git";
-  version = "1.5.5-unstable-2025-02-08";
+  version = "1.5.5-unstable-2025-02-12";
 
   src = fetchFromGitHub {
     owner = "Vencord";
     repo = "Vesktop";
-    rev = "8938fe27b24b815c70c42d2d0b8d75abd1951e7c";
-    hash = "sha256-tgBii1otP1Q6lbCwxhfScE33ZRoTQcsABMPvAMI/bc0=";
+    rev = "d7bc56660bc34bde7017f7dfe06c317777865e3f";
+    hash = "sha256-mAIt+TclXZFbeOPmFIqtDEgBh/0ICeEUZaRLzHZPlk4=";
   };
 
   pnpmDeps = pnpm_9.fetchDeps {
@@ -33,7 +33,7 @@ stdenv.mkDerivation (finalAttrs: {
       src
       patches
       ;
-    hash = "sha256-xn3yE2S6hfCijV+Edx3PYgGro8eF76/GqarOIRj9Tbg=";
+    hash = "sha256-b4Sii93kfd2MUiCqKtMGJSom8xFyVqQxRF8L2+iJLHM=";
   };
 
   nativeBuildInputs = [
