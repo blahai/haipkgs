@@ -21,7 +21,7 @@ in
     stdenv = stdenvAdapters.useMoldLinker llvm.stdenv;
   } {
     pname = "hyprland-preview-share-picker";
-    version = "0.1.0";
+    version = "0.1.0-unstable-2025-02-12";
 
     src = fetchFromGitHub {
       owner = "WhySoBad";
