@@ -15,7 +15,7 @@
   gdk-pixbuf,
   lib,
 }: let
-  nightlyToolchain = rust-bin.selectLatestNightlyWith (toolchain: toolchain.default);
+  nightlyToolchain = rust-bin.selectLatestNightlyWith (toolchain: toolchain.minimal);
 in
   rustPlatform.buildRustPackage.override {
     stdenv = stdenvAdapters.useMoldLinker llvm.stdenv;
@@ -51,8 +51,8 @@ in
       gtk4-layer-shell
     ];
 
-    rustc = rust-bin.nightly.latest.default;
-    cargo = rust-bin.nightly.latest.default;
+    rustc = rust-bin.nightly.latest.minimal;
+    cargo = rust-bin.nightly.latest.minimal;
 
     RUSTFLAGS = "-C link-arg=-fuse-ld=mold";
 
