@@ -46,7 +46,10 @@
   in {
     packages = forAllSystems loadPackages;
 
-    overlays.default = _: prev: self.packages.${prev.stdenv.hostPlatform.system} or {};
+    overlays = {
+      default = _: prev: self.packages.${prev.stdenv.hostPlatform.system} or {};
+      haiLib = self.haiLib;
+    };
 
     apps = forAllSystems (pkgs: {
       update = {
@@ -114,6 +117,8 @@
         '';
       };
     });
+
+    haiLib = import ./lib {inherit lib;};
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);
   };
