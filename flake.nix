@@ -28,17 +28,6 @@
           )
       );
 
-    mkModule = {
-      name ? "default",
-      class,
-      file,
-    }: {
-      _class = class;
-      _file = "${self.outPath}/flake.nix#${class}Modules.${name}";
-
-      imports = [(import file {haipkgsSelf = self;})];
-    };
-
     loadPackages = pkgs: let
       packageNames = builtins.attrNames (builtins.readDir ./pkgs);
     in
@@ -98,10 +87,7 @@
         self.packages.${pkgs.stdenv.hostPlatform.system}
     );
 
-    nixosModules.default = mkModule {
-      class = "nixos";
-      file = ./modules/nixos;
-    };
+    nixosModules = import ./modules/nixos;
 
     haiLib = import ./lib {inherit lib;};
 
