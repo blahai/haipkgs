@@ -48,7 +48,7 @@
 
     overlays = {
       default = _: prev: self.packages.${prev.stdenv.hostPlatform.system} or {};
-      haiLib = self.haiLib;
+      inherit (self) haiLib;
     };
 
     apps = forAllSystems (pkgs: {
@@ -57,7 +57,6 @@
         program = lib.getExe (
           pkgs.writeShellApplication {
             name = "update";
-
             text = lib.concatStringsSep "\n" (
               lib.mapAttrsToList (
                 name: pkg:
@@ -103,20 +102,6 @@
       class = "nixos";
       file = ./modules/nixos;
     };
-
-    devShells = forAllSystems (pkgs: {
-      default = pkgs.mkShell {
-        name = "devshell";
-
-        buildInputs = with pkgs; [
-          nix-update
-        ];
-
-        shellHook = ''
-          echo "Entering devshell!"
-        '';
-      };
-    });
 
     haiLib = import ./lib {inherit lib;};
 
