@@ -4,7 +4,8 @@ stages:
 update_flake_inputs:
   stage: update
   tags:
-    - nix shell
+    - nix 
+    - shell
   script:
     - git config --global user.name 'Renovate Bot'
     - git config --global user.email 'gitlab-renovate@blahai.gay'
