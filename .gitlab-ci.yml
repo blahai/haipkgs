@@ -34,9 +34,13 @@ build_packages:
         --systems x86_64-linux \
         --option accept-flake-config true \
         --flake .#hydraJobs.x86_64-linux \
+        --cachix-cache haipkgs
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
         - pkgs/**
       when: always
     - when: never
+  variables:
+    CACHIX_SIGNING_KEY: $CACHIX_SIGNING_KEY
+    CACHIX_AUTH_TOKEN: $CACHIX_AUTH_TOKEN
