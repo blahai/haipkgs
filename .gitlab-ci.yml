@@ -11,4 +11,4 @@ update_flake_inputs:
     - git config --global user.email 'gitlab-renovate@blahai.gay'
     - nix flake update --commit-lock-file
     - nix run .#update
-    - git push
+    - git push origin HEAD:main
