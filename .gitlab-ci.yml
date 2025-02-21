@@ -28,7 +28,7 @@ build_packages:
     - nix
   script:
     - |
-      nix run nixpkgs#nix-fast-build -- \
+      nix-fast-build \
         --no-nom \
         --skip-cached \
         --systems x86_64-linux \
