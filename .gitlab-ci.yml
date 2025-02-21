@@ -29,9 +29,11 @@ build_packages:
   script:
     - |
       nix run nixpkgs#nix-fast-build -- \
-       --systems x86_64-linux \
-       --option accept-flake-config true \
-       --flake .#hydraJobs.x86_64-linux
+        --no-nom \
+        --skip-cached \
+        --systems x86_64-linux \
+        --option accept-flake-config true \
+        --flake .#hydraJobs.x86_64-linux \
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
