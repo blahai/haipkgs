@@ -18,6 +18,8 @@ update_flake_inputs:
     - nix flake update --commit-lock-file
     - nix run .#update
     - git push origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
 
 build_packages:
   stage: build
@@ -26,11 +28,13 @@ build_packages:
     - nix
   script:
     - |
-      nix-fast-build \
+      nix run nixpkgs#nix-fast-build -- \
        --systems x86_64-linux \
        --option accept-flake-config true \
        --flake .#hydraJobs.x86_64-linux
   rules:
-    - changes:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
         - pkgs/**
-      
+      when: always
+    - when: never
