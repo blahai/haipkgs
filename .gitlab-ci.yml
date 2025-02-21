@@ -1,14 +1,39 @@
+default:
+  tags:
+    - nix
+
 stages:
   - update
+  - build
 
 update_flake_inputs:
   stage: update
   tags:
     - nix 
-    - shell
+  before_script:
+    - git config --global user.name "haibot"
+    - git config --global user.email "haibot@blahai.gay"
+    - git remote set-url --push origin "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git"
   script:
-    - git config --global user.name 'Renovate Bot'
-    - git config --global user.email 'gitlab-renovate@blahai.gay'
     - nix flake update --commit-lock-file
     - nix run .#update
-    - git push origin HEAD:main
+    - git push origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - when: never
+
+build_packages:
+  stage: build
+  tags:
+    - shell
+    - nix
+  script:
+    - |
+      nix-fast-build \
+       --systems x86_64-linux \
+       --option accept-flake-config true \
+       --flake .#hydraJobs.x86_64-linux
+  rules:
+    - changes:
+        - pkgs/**
+      
