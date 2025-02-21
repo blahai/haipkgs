@@ -1,0 +1,37 @@
+stages:
+  - update
+  - build
+
+update_flake_inputs:
+  stage: update
+  tags:
+    - nix shell
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  script:
+    - git config --global user.name 'Renovate Bot'
+    - git config --global user.email 'gitlab-renovate@blahai.gay'
+    - nix flake update --commit-lock-file
+    - nix run .#update
+    - git push origin main
+
+build_packages:
+  stage: build
+  tags:
+    - nix shell
+  rules:
+    - changes:
+        - pkgs/**  # Runs only if `pkgs/` is modified
+  script:
+    - |
+      nix-fast-build \
+        --no-nom \
+        --skip-cached \
+        --systems x86_64-linux \
+        --option accept-flake-config true \
+        --flake .#hydraJobs.x86_64-linux \
+        --cachix-cache haipkgs
+  variables:
+    CACHIX_SIGNING_KEY: $CACHIX_SIGNING_KEY
+    CACHIX_AUTH_TOKEN: $CACHIX_AUTH_TOKEN
