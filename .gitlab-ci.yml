@@ -6,7 +6,6 @@ update_flake_inputs:
   tags:
     - nix shell
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
     - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
     - git config --global user.name 'Renovate Bot'
