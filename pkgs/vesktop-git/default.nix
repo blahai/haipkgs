@@ -5,7 +5,7 @@
   makeWrapper,
   makeDesktopItem,
   copyDesktopItems,
-  electron_33,
+  electron,
   libicns,
   pipewire,
   libpulseaudio,
@@ -66,8 +66,8 @@ stdenv.mkDerivation (finalAttrs: {
     pnpm exec electron-builder \
       --dir \
       -c.asarUnpack="**/*.node" \
-      -c.electronDist=${electron_33.dist} \
-      -c.electronVersion=${electron_33.version}
+      -c.electronDist=${electron.dist} \
+      -c.electronVersion=${electron.version}
 
     runHook postBuild
   '';
@@ -91,7 +91,7 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   postFixup = ''
-    makeWrapper ${electron_33}/bin/electron $out/bin/vesktop \
+    makeWrapper ${electron}/bin/electron $out/bin/vesktop \
       --add-flags $out/opt/Vesktop/resources/app.asar \
       --add-flags "--enable-blink-features=MiddleClickAutoscroll" \
       --add-flags "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true"
