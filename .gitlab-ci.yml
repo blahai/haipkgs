@@ -17,9 +17,11 @@ update_flake_inputs:
   script:
     - nix flake update --commit-lock-file
     - nix run .#update
-    - git push origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip
+    - git push origin HEAD:$CI_COMMIT_REF_NAME
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - when: never
 
 build_packages:
   stage: build
