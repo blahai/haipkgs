@@ -41,6 +41,7 @@ build_packages:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
         - pkgs/**
+        - flake.lock
       when: always
     - when: never
   variables:
