@@ -21,7 +21,7 @@ in {
   };
   config = {
     nixpkgs.overlays = mkIf cfg.enable [
-      inputs.overlays.default
+      inputs.self.overlays.default
     ];
   };
 }
