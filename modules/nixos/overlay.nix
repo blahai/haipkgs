@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  self,
+  inputs,
   ...
 }: let
   inherit (lib.modules) mkIf;
@@ -21,7 +21,7 @@ in {
   };
   config = {
     nixpkgs.overlays = mkIf cfg.enable [
-      self.overlays.default
+      inputs.overlays.default
     ];
   };
 }
