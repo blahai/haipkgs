@@ -2,6 +2,7 @@ let
   modules = {
     refind = import ./refind;
     haicache = import ./haicache.nix;
+    haioverlay = import ./overlay.nix;
   };
 
   default = {...}: {
