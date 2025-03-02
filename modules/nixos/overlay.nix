@@ -1,12 +1,13 @@
 {
   config,
   lib,
-  inputs,
+  self,
   ...
 }: let
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkOption;
   inherit (lib.types) types;
+  haiOverlay = self.overlays.default;
   cfg = config.haipkgs.overlay;
 in {
   options = {
@@ -21,7 +22,7 @@ in {
   };
   config = {
     nixpkgs.overlays = mkIf cfg.enable [
-      inputs.self.overlays.default
+      haiOverlay
     ];
   };
 }
