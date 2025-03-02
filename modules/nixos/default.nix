@@ -1,8 +1,8 @@
-let
+{self}: let
   modules = {
     refind = import ./refind;
     haicache = import ./haicache.nix;
-    haioverlay = import ./overlay.nix;
+    haioverlay = import ./overlay.nix {inherit self;};
   };
 
   default = {...}: {
