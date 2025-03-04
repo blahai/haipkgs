@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     rust-overlay = {
-      url = "github:oxalica/rust-overlay/c932b3873a5d56126bc1f1416fb8a58315f86c17";
+      url = "github:oxalica/rust-overlay/aefb7017d710f150970299685e8d8b549d653649";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
