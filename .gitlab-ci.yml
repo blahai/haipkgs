@@ -32,8 +32,7 @@ build_packages:
     - |
       nix-fast-build \
         --no-nom \
-        --skip-cached \
-        --systems x86_64-linux \
+        --max-jobs 4 \
         --option accept-flake-config true \
         --flake .#hydraJobs.x86_64-linux \
         --cachix-cache haipkgs
