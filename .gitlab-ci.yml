@@ -31,7 +31,7 @@ build_packages:
   script:
     - |
       nix run nixpkgs#nix-fast-build -- \
-        --skip-cached
+        --skip-cached \
         --no-nom \
         --max-jobs 4 \
         --option accept-flake-config true \
