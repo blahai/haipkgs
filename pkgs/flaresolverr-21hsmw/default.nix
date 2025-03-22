@@ -4,24 +4,18 @@
   stdenv,
   python3,
   makeWrapper,
+  runCommand,
   chromium,
   xorg,
   undetected-chromedriver,
   ...
 }: let
-  selenium' = python3.pkgs.callPackage ./selenium {};
-  python3-undetected-chromedriver' = python3.pkgs.undetected-chromedriver.override {
-    selenium = selenium';
-  };
-  undetected-chromedriver' = undetected-chromedriver.overrideAttrs (_old: {
-    nativeBuildInputs = [(python3.withPackages (_ps: [python3-undetected-chromedriver']))];
-  });
   python = python3.withPackages (
     p:
       with p; [
         bottle
         waitress
-        selenium'
+        selenium
         func-timeout
         psutil
         prometheus-client
@@ -35,19 +29,27 @@
       ]
   );
 
+  chromium-wrapped = runCommand "chromium-wrapped" {nativeBuildInputs = [makeWrapper];} ''
+    mkdir -p $out/bin
+    makeWrapper \
+      ${chromium}/bin/chromium \
+      $out/bin/chromium \
+      --add-flags "--disable-gpu"
+  '';
+
   path = lib.makeBinPath [
-    chromium
-    undetected-chromedriver'
+    chromium-wrapped
+    undetected-chromedriver
     xorg.xorgserver
   ];
 in
   stdenv.mkDerivation {
     pname = "flaresolverr-21hsmw";
-    version = "23273a62a0d1f5cf3afb89a3ca016053ad82f88b";
+    version = "008ff71315baa40761d9d6283a248e50c43db491";
     src = fetchFromGitHub {
       owner = "21hsmw";
       repo = "FlareSolverr";
-      rev = "23273a62a0d1f5cf3afb89a3ca016053ad82f88b";
+      rev = "008ff71315baa40761d9d6283a248e50c43db491";
       hash = "sha256-yb43jzBIxHAhsReZUuGWNduyM2Qm/P+FaSTQf1O06ew=";
     };
 
@@ -55,7 +57,7 @@ in
 
     postPatch = ''
       substituteInPlace src/utils.py \
-        --replace 'PATCHED_DRIVER_PATH = None' 'PATCHED_DRIVER_PATH = "${undetected-chromedriver'}/bin/undetected-chromedriver"'
+        --replace 'PATCHED_DRIVER_PATH = None' 'PATCHED_DRIVER_PATH = "${undetected-chromedriver}/bin/undetected-chromedriver"'
     '';
 
     installPhase = ''
@@ -79,6 +81,6 @@ in
       license = licenses.mit;
       # broken = true;
       # Platform depends on chromedriver
-      inherit (undetected-chromedriver'.meta) platforms;
+      inherit (undetected-chromedriver.meta) platforms;
     };
   }
