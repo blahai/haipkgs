@@ -45,12 +45,12 @@
 in
   stdenv.mkDerivation {
     pname = "flaresolverr-21hsmw";
-    version = "008ff71315baa40761d9d6283a248e50c43db491";
+    version = "v3.4.0-Beta";
     src = fetchFromGitHub {
       owner = "21hsmw";
       repo = "FlareSolverr";
       rev = "008ff71315baa40761d9d6283a248e50c43db491";
-      hash = "sha256-yb43jzBIxHAhsReZUuGWNduyM2Qm/P+FaSTQf1O06ew=";
+      hash = "sha256-Xf8eXXUV38Yl9fG+ToP0uNqBl+M6JdiRn3rUMltQ3a0=";
     };
 
     nativeBuildInputs = [makeWrapper];
