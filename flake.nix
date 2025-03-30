@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     rust-overlay = {
       url = "github:oxalica/rust-overlay/aefb7017d710f150970299685e8d8b549d653649";
       inputs.nixpkgs.follows = "nixpkgs";
