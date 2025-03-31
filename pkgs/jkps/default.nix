@@ -27,5 +27,6 @@ stdenv.mkDerivation {
     homepage = "https://github.com/JekiTheMonkey/JKPS";
     license = lib.licenses.mit;
     platforms = lib.platforms.linux;
+    broken = true;
   };
 }
