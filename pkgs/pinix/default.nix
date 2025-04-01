@@ -12,7 +12,7 @@ rustPlatform.buildRustPackage.override {
   stdenv = stdenvAdapters.useMoldLinker llvm.stdenv;
 } {
   pname = "pinix";
-  version = "0.3.1";
+  version = "0-unstable-2025-02-20";
 
   src = fetchFromGitHub {
     owner = "remi-dupre";
