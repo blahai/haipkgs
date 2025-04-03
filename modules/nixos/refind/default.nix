@@ -77,7 +77,7 @@ with lib; let
       then cfg.extraIcons
       else "";
 
-    inherit (pkgs) refind efibootmgr coreutils gnugrep gnused gawk util-linux findutils;
+    inherit (pkgs) refind efibootmgr coreutils gnugrep gnused gawk utillinux findutils;
 
     inherit (efi) efiSysMountPoint canTouchEfiVariables;
   };
