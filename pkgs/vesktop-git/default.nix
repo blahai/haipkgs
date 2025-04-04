@@ -10,7 +10,7 @@
   pipewire,
   libpulseaudio,
   autoPatchelfHook,
-  pnpm_9,
+  pnpm_10,
   nodejs,
   nix-update-script,
 }: let
@@ -27,7 +27,7 @@ in
       hash = "sha256-1Mjqg5iyRE+TYJbXHWOJrb3kLIJ7BKtP+FluPIfVdqA=";
     };
 
-    pnpmDeps = pnpm_9.fetchDeps {
+    pnpmDeps = pnpm_10.fetchDeps {
       inherit
         (finalAttrs)
         pname
@@ -35,12 +35,12 @@ in
         src
         patches
         ;
-      hash = "sha256-tmSjxgYVqKCaFZeTWudM6+cwNwZA4b1fb9vbmeTnxxM=";
+      hash = "sha256-AdL9oikM1uTIXUNkXRQgn9A4lwR9Um5mWqnwYst3/yc=";
     };
 
     nativeBuildInputs = [
       nodejs
-      pnpm_9.configHook
+      pnpm_10.configHook
       autoPatchelfHook
       copyDesktopItems
       makeWrapper
