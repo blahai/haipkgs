@@ -35,7 +35,7 @@ in
         src
         patches
         ;
-      hash = "sha256-qdKjfB5KaKvvlLINw5IVFvc5E4gcVaQrywrrU83XQ4k=";
+      hash = "sha256-tmSjxgYVqKCaFZeTWudM6+cwNwZA4b1fb9vbmeTnxxM=";
     };
 
     nativeBuildInputs = [
