@@ -21,13 +21,13 @@ in
     stdenv = stdenvAdapters.useMoldLinker llvm.stdenv;
   } {
     pname = "hyprland-preview-share-picker";
-    version = "0.2.0-unstable-2025-03-23";
+    version = "0.2.0-unstable-2025-04-10";
 
     src = fetchFromGitHub {
       owner = "WhySoBad";
       repo = "hyprland-preview-share-picker";
-      rev = "d5e88a5dc30f5a3f205c68c4cd3789a253dad5ae";
-      hash = "sha256-u3JGE5jWwLrZTWmTW776MsG907lDAza+9F0sk+VH5nQ=";
+      rev = "111fd706e414c80fb5c36514d42563e22db86e67";
+      hash = "sha256-sJAF+3cMbwBjcq8H0vps0BhSkodfArQ+k6rsLNK5IXQ=";
       fetchSubmodules = true;
     };
 
