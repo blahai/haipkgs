@@ -9,7 +9,7 @@ on:
       - completed
   push:
     paths:
-      - "pkgs"
+      - "pkgs/**"
       - "**.lock"
       - ".github/workflows/build.yml"
 
