@@ -12,7 +12,7 @@ stdenv.mkDerivation {
     owner = "elissa";
     repo = "refind-theme-hai";
     tag = "0.1.0";
-    hash = "sha256-/5DTLBT/4RfxmyxtpVL0bVbdteL8GMOdFMUbgf8C09A=";
+    hash = "sha256-zqMaqYwdaidn8FfH9TouY3XfcyzX5RDxTDdJES7HtQA=";
   };
 
   installPhase = ''
