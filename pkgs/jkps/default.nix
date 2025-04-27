@@ -3,7 +3,7 @@
   lib,
   fetchFromGitHub,
   cmake,
-  sfml,
+  sfml_2,
 }:
 stdenv.mkDerivation {
   pname = "jkps";
@@ -16,7 +16,7 @@ stdenv.mkDerivation {
     sha256 = "sha256-NveKqapYq//8COndyUpSP8dHiKfTkiH7Yy6b+zdaxtQ=";
   };
 
-  buildInputs = [cmake sfml];
+  buildInputs = [cmake sfml_2];
 
   installPhase = ''
     install -D -m777 ./JKPS "$out/bin/JKPS"
@@ -27,6 +27,6 @@ stdenv.mkDerivation {
     homepage = "https://github.com/JekiTheMonkey/JKPS";
     license = lib.licenses.mit;
     platforms = lib.platforms.linux;
-    broken = true;
+    broken = false;
   };
 }
