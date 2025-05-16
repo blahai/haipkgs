@@ -48,7 +48,7 @@ jobs:
       - name: Build from the matrix
         run: |
           nix run \
-            github:Mic92/nix-fast-build -- \
+            nixpkgs#nix-fast-build -- \
             --no-nom \
             --skip-cached \
             --systems '${{ matrix.system }}' \
