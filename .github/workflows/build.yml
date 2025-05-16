@@ -12,10 +12,7 @@ on:
       - "pkgs/**"
       - "**.lock"
       - ".github/workflows/build.yml"
-env:
-  CACHIX_SIGNING_KEY: "${{ secrets.CACHIX_SIGNING_KEY }}"
-  CACHIX_AUTH_TOKEN: "${{ secrets.CACHIX_TOKEN }}"
-  
+
 jobs:
   build:
     name: Build (${{ matrix.system }})
@@ -42,8 +39,7 @@ jobs:
         uses: cachix/cachix-action@v16
         with:
           name: haipkgs
-          signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
-          authToken: "${{ secrets.CACHIX_TOKEN }}"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build from the matrix
         run: |
@@ -53,5 +49,4 @@ jobs:
             --skip-cached \
             --systems '${{ matrix.system }}' \
             --option accept-flake-config true \
-            --flake '.#hydraJobs.${{ matrix.system }}' \
-            --cachix-cache haipkgs
+            --flake '.#hydraJobs.${{ matrix.system }}'
