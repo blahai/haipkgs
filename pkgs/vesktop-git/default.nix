@@ -18,13 +18,13 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "vesktop-git";
-    version = "1.5.7-unstable-2025-06-21";
+    version = "1.5.7-unstable-2025-06-26";
 
     src = fetchFromGitHub {
       owner = "Vencord";
       repo = "Vesktop";
-      rev = "e6589eacfc9c7c7f51b1ef77e03873edd632f0b7";
-      hash = "sha256-zveFtbhFzJ/EbAtAaalpBObpT6KLvmX4pCpZG/ovyvE=";
+      rev = "236fc806de2d948bf5f8f51e6a1c3db07e9707ed";
+      hash = "sha256-CyfWnPJh2gaI68haQwxoDazisfvcl8lviFUrmBjuiVo=";
     };
 
     pnpmDeps = pnpm_10.fetchDeps {
