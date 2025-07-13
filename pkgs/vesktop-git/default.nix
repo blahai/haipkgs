@@ -5,7 +5,7 @@
   makeWrapper,
   makeDesktopItem,
   copyDesktopItems,
-  electron_36,
+  electron_37,
   libicns,
   pipewire,
   libpulseaudio,
@@ -14,7 +14,7 @@
   nodejs,
   nix-update-script,
 }: let
-  electron = electron_36;
+  electron = electron_37;
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "vesktop-git";
