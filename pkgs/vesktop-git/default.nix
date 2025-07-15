@@ -36,6 +36,7 @@ in
         patches
         ;
       hash = "sha256-dZEaw6sJMYl35aSi2RSxkCf/qo+S0z+m8EjsmgxyiAk=";
+      fetcherVersion = "1";
     };
 
     nativeBuildInputs = [
