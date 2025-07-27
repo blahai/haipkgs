@@ -31,7 +31,6 @@ in
       fetchSubmodules = true;
     };
 
-    useFetchCargoVendor = true;
     cargoHash = "sha256-AqX9jKj7JLEx1SLefyaWYGbRdk0c3H/NDTIsZy6B6hY=";
 
     doCheck = false;

@@ -31,7 +31,6 @@ rustPlatform.buildRustPackage.override {stdenv = stdenvAdapters.useMoldLinker ll
     fetchSubmodules = true;
   };
 
-  useFetchCargoVendor = true;
   cargoHash = "sha256-chMbDMT8UWaiGovlzYn1UD8VFqb9UYHMDDx/A62wQsY=";
 
   doCheck = false;

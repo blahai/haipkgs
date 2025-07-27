@@ -22,7 +22,6 @@ rustPlatform.buildRustPackage.override {
     fetchSubmodules = true;
   };
 
-  useFetchCargoVendor = true;
   cargoHash = "sha256-gA5/V0BPNajUcRs6c/Z8YcwiCFADYxmJliii/P6xneY=";
 
   doCheck = true;
