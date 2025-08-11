@@ -12,17 +12,17 @@ rustPlatform.buildRustPackage.override {
   stdenv = stdenvAdapters.useMoldLinker llvm.stdenv;
 } {
   pname = "pinix";
-  version = "0-unstable-2025-05-30";
+  version = "0-unstable-2025-08-07";
 
   src = fetchFromGitHub {
     owner = "remi-dupre";
     repo = "pinix";
-    rev = "7e40521c82b0bdc2886d2e8dee0b53458d889a5b";
-    hash = "sha256-B9rr0d0l/y+3u32Iw+pu1ZxUZSnzhj2XLPpN3yhAE+E=";
+    rev = "88181384f67997e009b31b974ccbf45e8f0673ed";
+    hash = "sha256-nU9x96DIFr/y/oMetmCrjJ2vtb33oBfZYbNtnFYxRhs=";
     fetchSubmodules = true;
   };
 
-  cargoHash = "sha256-gA5/V0BPNajUcRs6c/Z8YcwiCFADYxmJliii/P6xneY=";
+  cargoHash = "sha256-UKUZ9GyANdBfd/4dNPcVJUx5kb8HHZK3qMfNcvXieCc=";
 
   doCheck = true;
 
