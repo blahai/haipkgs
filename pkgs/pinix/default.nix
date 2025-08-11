@@ -67,5 +67,6 @@ rustPlatform.buildRustPackage.override {
     license = lib.licenses.lgpl3;
     platforms = lib.platforms.linux;
     mainProgram = "pinix";
+    broken = true;
   };
 }
