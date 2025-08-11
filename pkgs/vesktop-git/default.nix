@@ -35,7 +35,7 @@ in
         src
         patches
         ;
-      hash = "sha256-dZEaw6sJMYl35aSi2RSxkCf/qo+S0z+m8EjsmgxyiAk=";
+      hash = "sha256-rJzXbIQUxCImTqeH8EsGiyGNGoHYUqoekoa+VXpob5Y=";
       fetcherVersion = 2;
     };
 
