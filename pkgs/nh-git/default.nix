@@ -15,13 +15,13 @@
 in
   rustPlatform.buildRustPackage (finalAttrs: {
     pname = "nh-git";
-    version = "4.2.0-beta3-unstable-2025-09-01";
+    version = "4.2.0-beta3-unstable-2025-09-02";
 
     src = fetchFromGitHub {
       owner = "nix-community";
       repo = "nh";
-      rev = "5d53f2b8c3e6b3a88576bd347d0de2d048f5dace";
-      hash = "sha256-v32Ns4zmQgO/ILCeEPxxbOOGCDYNtam4QGBX6mjfZLI=";
+      rev = "f3095b9f00092717a694f39a2723fb04e3f575e0";
+      hash = "sha256-uNaSFIlyJRsvcMNoN7gxkhr7V6gORtQVUEfFQnwTdWQ=";
     };
 
     cargoHash = "sha256-ald06MHHSNUo/zGj4nnqXBtMQ6z9+6gcJ+aAmib0dA0=";
