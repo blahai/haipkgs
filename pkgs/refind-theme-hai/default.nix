@@ -8,7 +8,7 @@ stdenv.mkDerivation {
   version = "0.1.0";
 
   src = fetchFromGitLab {
-    domain = "git.blahai.gay";
+    domain = "git.elissa.moe";
     owner = "elissa";
     repo = "refind-theme-hai";
     tag = "0.1.0";
@@ -22,7 +22,7 @@ stdenv.mkDerivation {
 
   meta = {
     description = "rEFInd theme based on the nord theme";
-    homepage = "https://git.blahai.gay/elissa/refind-theme-hai";
+    homepage = "https://git.elissa.moe/elissa/refind-theme-hai";
     license = lib.licenses.gpl3;
     platforms = lib.platforms.linux;
     maintainers = with lib.maintainers; [];

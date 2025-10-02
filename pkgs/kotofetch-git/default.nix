@@ -12,10 +12,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "hxpe-dev";
     repo = "kotofetch";
     rev = "ebe55e69bcabe851a1b64d9068a975a995cc5c81";
-    hash = "";
+    hash = "sha256-rihmGTdHzgr8cRvi+f4cVHyhTH0BWYlGTSDmmn2/4Xs=";
   };
 
-  cargoHash = "";
+  cargoHash = "sha256-mlS1MS4t8RE8/9za+4wVTbnfKlf1z0m1qLDn7yQXChY=";
 
   strictDeps = true;
 
