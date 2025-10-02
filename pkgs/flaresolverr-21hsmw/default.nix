@@ -8,6 +8,7 @@
   chromium,
   xorg,
   undetected-chromedriver,
+  nix-update-script,
   ...
 }: let
   python = python3.withPackages (
@@ -45,7 +46,7 @@
 in
   stdenv.mkDerivation {
     pname = "flaresolverr-21hsmw";
-    version = "v3.4.0-Beta";
+    version = "0-unstable-2025-03-04";
     src = fetchFromGitHub {
       owner = "21hsmw";
       repo = "FlareSolverr";
@@ -72,6 +73,15 @@ in
 
       runHook postInstall
     '';
+
+    passthru = {
+      updateScript = nix-update-script {
+        extraArgs = [
+          "--version"
+          "branch=HEAD"
+        ];
+      };
+    };
 
     meta = with lib; {
       mainProgram = "flaresolverr";
