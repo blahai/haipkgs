@@ -3,16 +3,17 @@
   stdenvNoCC,
   dash,
   fetchFromGitHub,
+  nix-update-script,
 }:
 stdenvNoCC.mkDerivation {
   pname = "app2unit";
-  version = "0-unstable-2025-05-09";
+  version = "1.1.2-unstable-2025-09-01";
 
   src = fetchFromGitHub {
     owner = "Vladimir-csp";
     repo = "app2unit";
-    rev = "7b9672a2dc16bdfbe7b7b7c27043529ca3bcb6ae";
-    sha256 = "03dnx5v75530fwppfgpjl6xzzmdbk73ymrlix129d9n5sqrz9wgk";
+    rev = "da89627765177d8f54033ee24cee8e864860baeb";
+    sha256 = "sha256-M2sitlrQNSLthSaDH+R8gUcZ8i+o1ktf2SB/vvjyJEI=";
   };
 
   installPhase = ''
@@ -25,6 +26,15 @@ stdenvNoCC.mkDerivation {
     substituteInPlace $out/bin/app2unit \
       --replace-fail '#!/bin/sh' '#!${lib.getExe dash}'
   '';
+
+  passthru = {
+    updateScript = nix-update-script {
+      extraArgs = [
+        "--version"
+        "branch=HEAD"
+      ];
+    };
+  };
 
   meta = {
     description = "Launches Desktop Entries as Systemd user units";
