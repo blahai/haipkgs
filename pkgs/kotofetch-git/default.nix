@@ -6,16 +6,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "kotofetch-git";
-  version = "0.2.15-unstable-2025-10-01";
+  version = "0.2.16-unstable-2025-10-02";
 
   src = fetchFromGitHub {
     owner = "hxpe-dev";
     repo = "kotofetch";
-    rev = "ebe55e69bcabe851a1b64d9068a975a995cc5c81";
-    hash = "sha256-rihmGTdHzgr8cRvi+f4cVHyhTH0BWYlGTSDmmn2/4Xs=";
+    rev = "9b5aeee90e10e24028b06d27cf47f736e8b107d9";
+    hash = "sha256-bxIgIab2yBIZBafpndgn7sILUM9qQWPWxJKAg4RMKug=";
   };
 
-  cargoHash = "sha256-mlS1MS4t8RE8/9za+4wVTbnfKlf1z0m1qLDn7yQXChY=";
+  cargoHash = "sha256-GntAf9CeLBGfEzLi2H+1Wz8vGlbsWl0CJXmp7EmD9/s=";
 
   strictDeps = true;
 
