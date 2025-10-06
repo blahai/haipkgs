@@ -11,8 +11,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromGitHub {
     owner = "hxpe-dev";
     repo = "kotofetch";
-    rev = "099964cbec40085b07d486683f68d45cc96554a8";
-    hash = "sha256-MfBDXKBzEU1+BkkBeFtpZjgpKn6iares/fACea2/BVM=";
+    rev = "a0770feda6956384c517aa428b05b2873360627f";
+    hash = "sha256-TComlTrovnaaWEOp7xZM0RE0ef0fUeEFTz8sHJjnELk=";
   };
 
   cargoHash = "sha256-0es6IUH4hHue7uzfZbTlfqUPBYi7U7txy0t8xcxA5V8=";
