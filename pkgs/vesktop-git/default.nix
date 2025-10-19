@@ -18,13 +18,13 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "vesktop-git";
-    version = "1.5.8-unstable-2025-10-18";
+    version = "1.6.0-unstable-2025-10-19";
 
     src = fetchFromGitHub {
       owner = "Vencord";
       repo = "Vesktop";
-      rev = "eb3dae897d39a1b7dbb8cae6b5c4884c9d0cec1d";
-      hash = "sha256-Q3owHquLyB7KaBEYYwEOcGF1DDtpUL8A4iXaRZQ0GgA=";
+      rev = "02907d32484dd235dcaea711bdfa45cda2995456";
+      hash = "sha256-kzJsSjaTH6HtBfhEtX4NLJS96zgYr0/Us6H0tDJvb9A=";
     };
 
     pnpmDeps = pnpm_10.fetchDeps {
@@ -54,7 +54,6 @@ in
     ];
 
     patches = [
-      ./disable_update_checking.patch
       ./fix_read_only_settings.patch
     ];
 
