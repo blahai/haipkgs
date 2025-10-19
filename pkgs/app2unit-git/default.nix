@@ -7,13 +7,13 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "app2unit";
-  version = "1.1.2-unstable-2025-10-16";
+  version = "1.1.2-unstable-2025-10-18";
 
   src = fetchFromGitHub {
     owner = "Vladimir-csp";
     repo = "app2unit";
-    rev = "0c8d76587eb3834ec8075a80a88e009e4875359c";
-    sha256 = "sha256-Ad4I++l4Ry/OdFwUD6VB63rWzercWi9GlWXdJu7F1HY=";
+    rev = "3eeab9ec71314941fa581ac104f3b4ffd3abe77f";
+    sha256 = "sha256-+dI1fvIrYKWOAa6sLJsyFUgmFUhCl2H3gnY1VEmvazM=";
   };
 
   installPhase = ''
