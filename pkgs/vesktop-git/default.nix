@@ -23,8 +23,8 @@ in
     src = fetchFromGitHub {
       owner = "Vencord";
       repo = "Vesktop";
-      rev = "02907d32484dd235dcaea711bdfa45cda2995456";
-      hash = "sha256-kzJsSjaTH6HtBfhEtX4NLJS96zgYr0/Us6H0tDJvb9A=";
+      rev = "28a13be709d2329000b1973bac03e667fcf32208";
+      hash = "sha256-fhslyZIDCUC7JIwLPEMkc/Qady5/vfwrO4TPjHxqZks=";
     };
 
     pnpmDeps = pnpm_10.fetchDeps {
