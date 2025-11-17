@@ -7,7 +7,7 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "app2unit";
-  version = "1.1.2-unstable-2025-11-05";
+  version = "1.2.0-unstable-2025-11-05";
 
   src = fetchFromGitHub {
     owner = "Vladimir-csp";
