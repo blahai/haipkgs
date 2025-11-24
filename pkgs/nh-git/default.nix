@@ -33,19 +33,22 @@ in
       makeBinaryWrapper
     ];
 
-    postInstall = lib.optionalString (stdenv.hostPlatform.emulatorAvailable buildPackages) (
-      let
-        emulator = stdenv.hostPlatform.emulator buildPackages;
-      in ''
-        mkdir completions
+    postInstall = lib.optionalString (stdenv.hostPlatform.emulatorAvailable buildPackages) ''
+    # Run both shell completion and manpage generation tasks. Unlike the
+    # fine-grained variants, the 'dist' command doesn't allow specifying the
+    # path but that's fine, because we can simply install them from the implicit
+    # output directories.
+    cargo xtask dist
 
-        for shell in bash zsh fish; do
-          NH_NO_CHECKS=1 ${emulator} $out/bin/nh completions $shell > completions/nh.$shell
-        done
-
-        installShellCompletion completions/*
-      ''
-    );
+    # The dist task above should've created
+    #  1. Shell completions in comp/
+    #  2. The NH manpage (nh.1) in man/
+    # Let's install those.
+    for dir in comp man; do
+      mkdir -p "$out/share/$dir"
+      cp -rf "$dir" "$out/share/"
+    done
+    '';
 
     postFixup = ''
       wrapProgram $out/bin/nh \
