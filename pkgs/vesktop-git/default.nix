@@ -23,8 +23,8 @@ in
     src = fetchFromGitHub {
       owner = "Vencord";
       repo = "Vesktop";
-      rev = "5c992d66a6dd17c38689e883bd64ff1e5a2b9325";
-      hash = "sha256-9Wy7HZNNSVU9PoIBrKKWYscMeOISNreb1UpZS6XJUMk=";
+      rev = "8e91df03762acde5bfdb79b437e7063afa9cc234";
+      hash = "sha256-ixKaHwhmHLg15+ophsS8Em3HIt8Y4r4SpCyx9onDqtc=";
     };
 
     pnpmDeps = pnpm_10.fetchDeps {
@@ -35,7 +35,7 @@ in
         src
         patches
         ;
-      hash = "sha256-T+LdbGcS+KuWbTZiZVbmpXV0vGukYOQrVDURmzciuWQ=";
+      hash = "sha256-ubd+OEMt+DcCgUSer9l3O2+YPfo2S3E2ebjOh1iqNyE=";
       fetcherVersion = 2;
     };
 
@@ -54,7 +54,7 @@ in
     ];
 
     patches = [
-      ./fix_read_only_settings.patch
+      # ./fix_read_only_settings.patch
     ];
 
     env = {
